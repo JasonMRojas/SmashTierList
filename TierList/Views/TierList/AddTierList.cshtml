@@ -1,0 +1,54 @@
+﻿@model IList<Image>
+@{
+    ViewData["Title"] = "Index";
+    int imageId = 0;
+}
+
+<h2>TierListMaker</h2>
+
+<script src="~/js/createTierList.js"></script>
+
+<table class="table table-striped">
+    <tbody class="tierlist">
+        @for (int i = 0; i < 4; i++)
+        {
+            <tr>
+                <td>
+                    <input class="row-name form-inline" myPos="@i" type="text" />
+                </td>
+                @for (int j = 0; j < 10; j++)
+                {
+                    <td class="box" myPos="@i" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-controller="TierList" asp-action="AddTierList" method="post">
+
+    <input id="put-serialized-list-here" type="hidden" value="" name="serializedTierList" />
+
+    <input class="btn-primary" type="submit" value="Submit!" onclick="findAllImages()" />
+</form>
+
+
+
+<form method="post" asp-action="AddImage">
+    <label>Image Path</label>
+    <input type="text" name="ImagePath" />
+
+    <input class="btn-default" type="submit" value="Add Image" />
+</form>
+
+@foreach (var image in Model)
+{
+    imageId += 1;
+
+    <div class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img id="@imageId" src="@image.ImagePath" draggable="true" ondragstart="drag(event)">
+    </div>
+}
+
+
+<p>https://nnimgt-a.akamaihd.net/transform/v1/crop/frm/silverstone-feed-data/f8ba5493-6a8a-4aeb-99fc-48bb2e093de5.jpg/r0_0_800_600_w1200_h678_fmax.jpg</p>

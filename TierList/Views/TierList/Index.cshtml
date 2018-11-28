@@ -1,0 +1,31 @@
+﻿@model IList<TierListModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>TierListMaker</h2>
+
+<a asp-action="AddTierList">Add New Tier List</a>
+
+@foreach (var tierlist in Model)
+{
+<table class="table table-striped">
+    <tbody class="tierlist">
+
+    @foreach (var kvp in tierlist.FullTierList)
+    {
+        <tr>
+            <td>@kvp.Key</td>
+            @foreach (var item in kvp.Value)
+            {
+                <td><img src=@item.ImagePath /></td>
+            }
+        </tr>
+
+    }
+    </tbody>
+</table>
+    <br />
+    <hr />
+}
