@@ -13,12 +13,12 @@
         @for (int i = 0; i < 4; i++)
         {
             <tr>
-                <td>
-                    <input class="row-name form-inline" myPos="@i" type="text" />
+                <td class="row-name-column">
+                    <input class="row-name" myPos="@i" type="text" />
                 </td>
                 @for (int j = 0; j < 10; j++)
                 {
-                    <td class="box" myPos="@i" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                    <td class="box image-spots" myPos="@i"></td>
                 }
             </tr>
         }
@@ -29,7 +29,7 @@
 
     <input id="put-serialized-list-here" type="hidden" value="" name="serializedTierList" />
 
-    <input class="btn-primary" type="submit" value="Submit!" onclick="findAllImages()" />
+    <input id="submit" class="btn-primary" type="submit" value="Submit!" />
 </form>
 
 
@@ -40,15 +40,14 @@
 
     <input class="btn-default" type="submit" value="Add Image" />
 </form>
+<div class="box image-spots" ondrop="drop(event)" ondragover="allowDrop(event)">
+    @foreach (var image in Model)
+    {
+        imageId += 1;
 
-@foreach (var image in Model)
-{
-    imageId += 1;
-
-    <div class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <img id="@imageId" src="@image.ImagePath" draggable="true" ondragstart="drag(event)">
-    </div>
-}
+        <img class="draggable-image" id="@imageId" src="@image.ImagePath" draggable="true">
+    }
+</div>
 
 
 <p>https://nnimgt-a.akamaihd.net/transform/v1/crop/frm/silverstone-feed-data/f8ba5493-6a8a-4aeb-99fc-48bb2e093de5.jpg/r0_0_800_600_w1200_h678_fmax.jpg</p>

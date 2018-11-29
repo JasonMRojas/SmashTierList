@@ -1,4 +1,27 @@
-﻿function allowDrop(ev) {
+﻿document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("submit").addEventListener("click", () => {
+        findAllImages();
+    });
+
+    document.querySelectorAll("td.image-spots").forEach((column) => {
+        column.addEventListener("dragover", (event) => {
+            allowDrop(event);
+        })
+        column.addEventListener("drop", (event) => {
+            drop(event);
+        })
+    });
+
+    document.querySelectorAll("img.draggable-image").forEach((image) => {
+        image.addEventListener("dragstart", (event) => {
+            drag(event);
+        })
+    });
+});
+
+
+function allowDrop(ev) {
     ev.preventDefault();
 }
 
@@ -23,6 +46,10 @@ function findAllImages() {
 
     // ... la la la MAKE THIS LOOK LIKE SOME SERIALZD MODEL, keep in mind we can use the td parent's myPos attr to get the images' pos.
     $("#put-serialized-list-here").attr("value", valueMyPos);
+}
+
+function addRow() {
+
 }
 
 function getRowName(rowId) {

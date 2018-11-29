@@ -37,7 +37,7 @@ body {
 }
 
 img{
-    width: 100%;
+    width: 100px;
     height: 100px;
 }
 
@@ -45,4 +45,15 @@ img{
     border-top: solid;
     height: 100px;
     width: 100px;
+}
+
+
+td.row-name-column {
+    background-color: aliceblue;
+}
+
+div.image-spots {
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
 }
