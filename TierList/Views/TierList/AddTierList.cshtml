@@ -70,7 +70,7 @@
         </tr>
     </tbody>
 </table>
-<button id="add-row" class="btn-block">Add New Row</button>
+<button id="add-row" class="btn btn-block">Add New Row</button>
 
 <form asp-controller="TierList" asp-action="AddTierList" method="post" class="flex-form">
 
@@ -90,7 +90,7 @@
 
     <input class="btn btn-primary" type="submit" value="Add Image" />
 </form>
-<div class="image-spots bordered">
+<div id="image-start" class="image-spots bordered">
     @foreach (var image in Model)
     {
         imageId += 1;

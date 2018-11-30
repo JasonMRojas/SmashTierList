@@ -116,7 +116,16 @@ function showDeleteButton(gear) {
 function deleteRow(deleteButton) {
     let currentRow = deleteButton.parentNode.parentNode;
     let tableBody = deleteButton.parentNode.parentNode.parentNode;
+
+    moveImages(deleteButton.parentNode.parentNode);
+
     tableBody.removeChild(currentRow);
+}
+
+function moveImages(currentRow) {
+    currentRow.querySelectorAll("img").forEach((image) => {
+        document.getElementById("image-start").appendChild(image);
+    });
 }
 
 function changeColor(colorOption) {
@@ -212,6 +221,7 @@ function drop(ev) {
 function findAllImages() {
     let allTierListImages = $("tbody.tierlist td > img");
     var valueMyPos = "";
+    valueMyPos += document.getElementById("tier-list-name").innerText + "]";
 
     for (var i = 0; i < allTierListImages.length; i++) {
         valueMyPos += getRowName(allTierListImages[i].offsetParent.attributes.getNamedItem("myPos").value) + "|";

@@ -18,11 +18,14 @@ namespace TierList.DAL
 
         public TierListModel DeserializeTierList(string serializedTierList)
         {
-            //The serialized tierlist is delimeted by '|' and the patter goes as followed: (rowName)|(imagepath)|(rowName)|(imagepath)
-            string[] seperatedTierList = serializedTierList.Split('|');
+            //The serialized tierlist starts with the name and then splits the rest of the list with a ']' so as followed (name):(restofTierList)
+            //The rest of the serialized tierlist is delimeted by '|' and the patter goes as followed: (rowName)|(imagepath)|(rowName)|(imagepath)
+
+            string[] nameTierListSplit = serializedTierList.Split(']');
+            string[] seperatedTierList = nameTierListSplit[1].Split('|');
             TierListModel tierList = new TierListModel()
             {
-                Name = new Random().Next(1, 1000).ToString()
+                Name = nameTierListSplit[0]
             };
 
             for (int i = 0; i < seperatedTierList.Length - 1; i++)
