@@ -177,6 +177,13 @@ function saveEdit(textBox) {
 
     textBox.classList.add('d-none');
     rowName.classList.remove('d-none');
+
+    rowName.attributes.getNamedItem("myPos").value = textBox.value;
+    let currentColumn = rowName.parentNode;
+    while (currentColumn.nextElementSibling !== null) {
+        currentColumn.nextElementSibling.attributes.getNamedItem("myPos").value = textBox.value;
+        currentColumn = currentColumn.nextElementSibling;
+    }
 }
 
 function toggleEdit(rowName) {

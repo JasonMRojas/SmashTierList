@@ -83,6 +83,7 @@ tr {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between flex-start;
+    max-width: 60px;
     max-height: 100px;
 }
 
@@ -92,7 +93,7 @@ td.row-name-column {
 }
 
 .options-select {
-    max-width: 30px;
+    max-width: 40px;
 }
 .grey {
     background-color: grey        !important;
