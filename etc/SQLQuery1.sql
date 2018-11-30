@@ -26,6 +26,7 @@ CREATE TABLE tier_rows
 	name				varchar(50)		not null,
 	tier_list_id		int				not null,
 	order_value			int				null,
+	color				varchar(15)		null,
 
 	constraint pk_tier_rows primary key (id),
 	constraint fk_tier_list_rows foreign key (tier_list_id) references tier_list(id)

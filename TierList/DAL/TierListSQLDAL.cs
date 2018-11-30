@@ -33,12 +33,13 @@ namespace TierList.DAL
                 if (i % 2 == 0)
                 {
                     //Creates a new row using the (rowName) as the key (it is known that all even indexes in the array of strings is the name)
-                    tierList.CreateNewRow(seperatedTierList[i], i+1);
+                    string[] rowAndColor = seperatedTierList[i].Split('[');
+                    tierList.CreateNewRow(rowAndColor[0], i+1, rowAndColor[1]);
                 }
                 else
                 {
                     //Adds a new item to a row which already exists in the dictionary
-                    tierList.AddItemToRow(seperatedTierList[i-1], seperatedTierList[i], i+1);
+                    tierList.AddItemToRow(seperatedTierList[i-1].Split('[')[0], seperatedTierList[i], i+1);
                 }
             }
             return tierList;
@@ -80,8 +81,9 @@ namespace TierList.DAL
                     //I loop through each so that I can add every single row to the database
                     foreach (KeyValuePair<string, List<Image>> kvp in tierList.FullTierList)
                     {
-                        cmd = new SqlCommand("INSERT INTO tier_rows (name, tier_list_id) OUTPUT INSERTED.id VALUES (@rowName, @tierId);", conn);
+                        cmd = new SqlCommand("INSERT INTO tier_rows (name, color, tier_list_id) OUTPUT INSERTED.id VALUES (@rowName, @rowColor, @tierId);", conn);
                         cmd.Parameters.AddWithValue("@rowName", kvp.Key);
+                        cmd.Parameters.AddWithValue("@rowColor", tierList.RowColors[kvp.Key]);
                         cmd.Parameters.AddWithValue("@tierId", tierId);
 
                         reader = cmd.ExecuteReader();
@@ -160,7 +162,8 @@ namespace TierList.DAL
                             Row row = new Row()
                             {
                                 Name = Convert.ToString(readRows["name"]),
-                                RowId = Convert.ToInt32(readRows["id"])
+                                RowId = Convert.ToInt32(readRows["id"]),
+                                Color = Convert.ToString(readRows["color"])
                             };
 
                             //****************************
@@ -169,7 +172,7 @@ namespace TierList.DAL
                             //****************************
 
                             //Create the current row in the current tierlist model
-                            tierList.CreateNewRow(row.Name, orderValue);
+                            tierList.CreateNewRow(row.Name, orderValue, row.Color);
 
                             rows.Add(row);
                             //select all the items that are currently stored in the table

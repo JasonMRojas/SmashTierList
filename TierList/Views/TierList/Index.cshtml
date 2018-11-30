@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>TierListMaker</h2>
+<h1>TierListMaker</h1>
 
 <a asp-action="AddTierList">Add New Tier List</a>
 
@@ -18,10 +18,10 @@
     @foreach (var kvp in tierlist.FullTierList)
     {
         <tr>
-            <td>@kvp.Key</td>
+            <td class="@tierlist.RowColors[kvp.Key]"><h2 class="row-name">@kvp.Key</h2></td>
             @foreach (var item in kvp.Value)
             {
-                <td><img src=@item.ImagePath /></td>
+                <td class="box image-spots"><img src=@item.ImagePath /></td>
             }
         </tr>
 

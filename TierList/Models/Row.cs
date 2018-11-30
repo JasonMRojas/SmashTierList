@@ -10,5 +10,7 @@ namespace TierList.Models
         public string Name { get; set; }
 
         public int RowId { get; set; }
+
+        public string Color { get; set; }
     }
 }

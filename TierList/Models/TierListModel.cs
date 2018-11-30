@@ -9,6 +9,8 @@ namespace TierList.Models
     {
         public Dictionary<string, List<Image>> FullTierList { get; private set; }
 
+        public Dictionary<string, string> RowColors { get; private set; }
+
         public string Name { get; set; }
 
         public int Id { get; set; }
@@ -16,13 +18,18 @@ namespace TierList.Models
         public TierListModel()
         {
             FullTierList = new Dictionary<string, List<Image>>();
+            RowColors = new Dictionary<string, string>();
         }
 
-        public void CreateNewRow(string rowName, int orderValue)
+        public void CreateNewRow(string rowName, int orderValue, string color)
         {
             if (!FullTierList.ContainsKey(rowName))
             {
                 FullTierList[rowName] = new List<Image>();
+            }
+            if (!RowColors.ContainsKey(rowName))
+            {
+                RowColors[rowName] = color;
             }
         }
 

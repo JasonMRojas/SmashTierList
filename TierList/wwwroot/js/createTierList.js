@@ -131,7 +131,7 @@ function moveImages(currentRow) {
 function changeColor(colorOption) {
     let colorClass = colorOption.classList[0];
 
-    colorOption.parentNode.parentNode.nextElementSibling.className = 'row-name-column';
+    colorOption.parentNode.parentNode.nextElementSibling.className = 'row-literal row-name-column';
     colorOption.parentNode.parentNode.nextElementSibling.classList.add(colorClass);
 
     colorOption.parentNode.parentNode.className = 'row-name-column options-select';
@@ -224,7 +224,8 @@ function findAllImages() {
     valueMyPos += document.getElementById("tier-list-name").innerText + "]";
 
     for (var i = 0; i < allTierListImages.length; i++) {
-        valueMyPos += getRowName(allTierListImages[i].offsetParent.attributes.getNamedItem("myPos").value) + "|";
+        let row = allTierListImages[i].parentNode.parentNode.parentNode;
+        valueMyPos += getRowName(allTierListImages[i].offsetParent.attributes.getNamedItem("myPos").value) + "[" + row.querySelector('td.row-literal').classList[row.querySelector('td.row-literal').classList.length - 1] + "|";
         valueMyPos += allTierListImages[i].attributes.getNamedItem("src").value + "|";
     }
 
@@ -232,13 +233,13 @@ function findAllImages() {
     $("#put-serialized-list-here").attr("value", valueMyPos);
 }
 
-function getRowName(rowId) {
+function getRowName(rowPosition) {
 
     let rows = $(".row-name");
 
     for (var i = 0; i < rows.length; i++) {
 
-        if (rowId == rows[i].attributes.getNamedItem("myPos").value) {
+        if (rowPosition == rows[i].attributes.getNamedItem("myPos").value) {
             var rowName = rows[i].innerText;
         }
     }
