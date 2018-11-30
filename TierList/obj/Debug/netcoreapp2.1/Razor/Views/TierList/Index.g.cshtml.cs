@@ -63,7 +63,7 @@ using TierList.Models;
             WriteLiteral("\r\n<h2>TierListMaker</h2>\r\n\r\n");
             EndContext();
             BeginContext(100, 49, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b69002b21b9e4970b7aaa3a83363cb71", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "066c5ccd7a044cf78f807f57f51bc132", async() => {
                 BeginContext(128, 17, true);
                 WriteLiteral("Add New Tier List");
                 EndContext();

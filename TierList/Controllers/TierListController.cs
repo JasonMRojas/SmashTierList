@@ -41,9 +41,12 @@ namespace TierList.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddImage(Image image)
         {
-            IList<Image> images = GetSessionImages();
-            images.Add(image);
 
+            IList<Image> images = GetSessionImages();
+            if (image.ImagePath != null && image.ImagePath != string.Empty)
+            {
+                images.Add(image);
+            }
 
             SaveSessionImages(images);
 

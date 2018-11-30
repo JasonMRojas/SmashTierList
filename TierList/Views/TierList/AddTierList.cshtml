@@ -2,45 +2,95 @@
 @{
     ViewData["Title"] = "Index";
     int imageId = 0;
+    int rowPos = 0;
 }
 
-<h2>TierListMaker</h2>
+<h2 id="tier-list-name">Default Tier List Name</h2>
+<input id="tier-list-name-input" class="d-none form-control form-control-lg" value="Default Tier List Name" type="text" />
 
 <script src="~/js/createTierList.js"></script>
 
 <table class="table table-striped">
     <tbody class="tierlist">
+        <template id="color-template">
+            <div class="flex-colors">
+                <p class="red small-box"></p>
+                <p class="blue small-box"></p>
+                <p class="grey small-box"></p>
+                <p class="purple small-box"></p>
+                <p class="orange small-box"></p>
+                <p class="green small-box"></p>
+                <p class="yellow small-box"></p>
+                <p class="brown small-box"></p>
+                <p class="gold small-box"></p>
+                <p class="white small-box"></p>
+                <p class="darkred small-box"></p>
+                <p class="aqua small-box"></p>
+            </div>
+        </template>
+        <template id="delete-row-template">
+            <div>
+                <br />
+                <button class="remove-row btn-danger">Delete Row</button>
+            </div>
+        </template>
+
         @for (int i = 0; i < 4; i++)
         {
             <tr>
-                <td class="row-name-column">
-                    <input class="row-name" myPos="@i" type="text" />
+                <td class="row-name-column options-select">
+                    <span class="gear">
+                        &#9881;
+                    </span>
                 </td>
-                @for (int j = 0; j < 10; j++)
+                <td class="row-name-column">
+                    <h2 class="row-name" myPos="">Default Row Name</h2>
+                    <input class="d-none form-control form-control-lg row-name-input" value="Default Row Name" type="text" />
+                </td>
+                @for (int j = 0; j < Model.Count && j < 20; j++)
                 {
-                    <td class="box image-spots" myPos="@i"></td>
+                    <td class="box image-spots" myPos=""></td>
                 }
             </tr>
         }
+        <tr id="psuedo-template-row" class="d-none">
+            <td class="row-name-column options-select">
+                <span class="gear">
+                    &#9881;
+                </span>
+            </td>
+            <td class="row-name-column">
+                <h2 class="row-name" myPos="">Default Row Name</h2>
+                <input class="d-none form-control form-control-lg row-name-input" value="Default Row Name" type="text" />
+            </td>
+            @for (int j = 0; j < Model.Count && j < 20; j++)
+            {
+                <td class="box image-spots" myPos=""></td>
+            }
+        </tr>
     </tbody>
 </table>
+<button id="add-row" class="btn-block">Add New Row</button>
 
-<form asp-controller="TierList" asp-action="AddTierList" method="post">
+<form asp-controller="TierList" asp-action="AddTierList" method="post" class="flex-form">
 
     <input id="put-serialized-list-here" type="hidden" value="" name="serializedTierList" />
 
-    <input id="submit" class="btn-primary" type="submit" value="Submit!" />
+    <input id="submit" class="btn btn-success" type="submit" value="Save and Submit Tier Lists" />
 </form>
 
-
+<br />
+<br />
 
 <form method="post" asp-action="AddImage">
-    <label>Image Path</label>
-    <input type="text" name="ImagePath" />
+    <label>
+        <h4>Image Path</h4>
+        <input class="form-control max-width-form" type="text" name="ImagePath" defa />
+    </label>
 
-    <input class="btn-default" type="submit" value="Add Image" />
+    <input class="btn btn-primary" type="submit" value="Add Image" />
 </form>
-<div class="box image-spots" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div class="image-spots bordered">
     @foreach (var image in Model)
     {
         imageId += 1;
@@ -48,6 +98,3 @@
         <img class="draggable-image" id="@imageId" src="@image.ImagePath" draggable="true">
     }
 </div>
-
-
-<p>https://nnimgt-a.akamaihd.net/transform/v1/crop/frm/silverstone-feed-data/f8ba5493-6a8a-4aeb-99fc-48bb2e093de5.jpg/r0_0_800_600_w1200_h678_fmax.jpg</p>

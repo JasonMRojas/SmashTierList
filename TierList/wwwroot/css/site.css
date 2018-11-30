@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
@@ -12,21 +12,22 @@ body {
     padding-right: 15px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+nav {
+    background-color: #000000;
+    grid-area: nav;
+    margin-top: 0px;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
-
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
+    nav a {
+        background-color: #000000;
+        display: block;
+        float: left;
+        font-size: 21px;
+        color: white;
+        padding: 20px 20px 10px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
@@ -36,24 +37,106 @@ body {
     }
 }
 
-img{
+img {
     width: 100px;
     height: 100px;
 }
 
 .box {
-    border-top: solid;
+    border: solid;
     height: 100px;
     width: 100px;
 }
 
-
-td.row-name-column {
-    background-color: aliceblue;
+.max-width-form {
+    max-width: 400px;
 }
 
-div.image-spots {
+.flex-form {
     display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
+    justify-content: flex-end;
+}
+
+.bordered {
+    border: solid;
+    min-height: 100px;
+    min-width: 100px;
+}
+tbody {
+    border: solid;
+}
+
+tr {
+    border: solid;
+}
+
+.small-box {
+    margin: 0px;
+    border: solid;
+    height: 18px;
+    min-width: 5px;
+    max-width: 18px;
+}
+
+.flex-colors {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between flex-start;
+    max-height: 100px;
+}
+
+td.row-name-column {
+    background-color: lightcoral;
+    padding: 0px;
+}
+
+.options-select {
+    max-width: 30px;
+}
+.grey {
+    background-color: grey        !important;
+}
+.red {
+    background-color: lightcoral       !important;
+}
+
+.blue {
+    background-color: cornflowerblue     !important;
+}
+
+.orange {
+    background-color: orange    !important;
+}
+
+.purple {
+    background-color: mediumpurple      !important;
+}
+
+.green {
+    background-color: forestgreen       !important;
+}
+
+.yellow {
+    background-color: yellow            !important;
+}
+
+.brown {
+    background-color: saddlebrown       !important;
+}
+
+.white {
+    background-color: ghostwhite        !important;
+}
+
+.gold {
+    background-color: goldenrod         !important;
+}
+
+.darkred {
+    background-color: darkred       !important;
+}
+
+.aqua {
+    background-color: aqua          !important;
 }
