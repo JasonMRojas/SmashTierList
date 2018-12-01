@@ -17,7 +17,6 @@ nav {
     grid-area: nav;
     margin-top: 0px;
 }
-
     nav a {
         background-color: #000000;
         display: block;
@@ -90,6 +89,7 @@ tr {
 td.row-name-column {
     background-color: lightcoral;
     padding: 0px;
+    max-width: 100px;
 }
 
 .options-select {

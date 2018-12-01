@@ -73,6 +73,15 @@ function attachNewRowEventHandlers(newRow) {
         }
     });
 
+    document.querySelectorAll(".image-spots").forEach((column) => {
+        column.addEventListener("dragover", (event) => {
+            allowDrop(event);
+        })
+        column.addEventListener("drop", (event) => {
+            drop(event);
+        })
+    });
+
     let rowName = newRow.querySelector(".row-name");
     rowName.addEventListener("click", (event) => {
         toggleEdit(event.currentTarget);
@@ -224,7 +233,7 @@ function findAllImages() {
     valueMyPos += document.getElementById("tier-list-name").innerText + "]";
 
     for (var i = 0; i < allTierListImages.length; i++) {
-        let row = allTierListImages[i].parentNode.parentNode.parentNode;
+        let row = allTierListImages[i].parentNode.parentNode;
         valueMyPos += getRowName(allTierListImages[i].offsetParent.attributes.getNamedItem("myPos").value) + "[" + row.querySelector('td.row-literal').classList[row.querySelector('td.row-literal').classList.length - 1] + "|";
         valueMyPos += allTierListImages[i].attributes.getNamedItem("src").value + "|";
     }
